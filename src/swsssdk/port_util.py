@@ -5,7 +5,7 @@ import swsssdk
 import re
 
 
-SONIC_ETHERNET_RE_PATTERN = "^Ethernet(\d+(?:[_\/\.-]\d+)*)$"
+SONIC_ETHERNET_RE_PATTERN = r"^Ethernet(\d+(?:[_\/\.-]\d+)*)$"
 """
 Ethernet-BP refers to BackPlane interfaces
 in multi-asic platform.
