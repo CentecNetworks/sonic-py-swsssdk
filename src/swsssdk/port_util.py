@@ -5,7 +5,7 @@ import swsssdk
 import re
 
 
-SONIC_ETHERNET_RE_PATTERN = "^Ethernet(\d+)$"
+SONIC_ETHERNET_RE_PATTERN = r"^Ethernet(\d+(?:[_\/\.-]\d+)*)$"
 """
 Ethernet-BP refers to BackPlane interfaces
 in multi-asic platform.
@@ -64,7 +64,8 @@ def get_index_from_str(if_name):
     for pattern, baseidx in patterns.items():
         match = re.match(pattern, if_name)
         if match:
-            return int(match.group(1)) + baseidx
+            digits = ''.join(filter(str.isdigit, match.group(1)))
+            return int(digits) + baseidx
 
 def get_interface_oid_map(db, blocking=True):
     """
